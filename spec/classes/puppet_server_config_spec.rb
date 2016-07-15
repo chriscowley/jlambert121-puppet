@@ -69,6 +69,11 @@ describe 'puppet::server::config', :type => :class do
       it { should contain_file('/etc/sysconfig/puppetserver').with(:content => /JAVA_ARGS="blah"/) }
     end
 
+    contenxt 'set start timeout' do
+      let(:pre_contdition) { 'class { "puppet": server => true, server_start_timeout => 300 }'}
+      it { should contain_file('/etc/sysconfig/puppetserver').with(:content /START_TIMEOUT=300/) }
+    end
+
     context 'set disable ca' do
       let(:pre_condition) { 'class { "puppet": server => true, server_ca_enabled => false }'}
       it { should_not contain_file('/etc/puppetlabs/puppetserver/bootstrap.cfg').with(:content => /puppetlabs\.services\.ca\.certificate\-authority\-service\/certificate\-authority\-service/) }

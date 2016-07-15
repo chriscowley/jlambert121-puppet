@@ -26,6 +26,7 @@ class puppet::params {
   $server_log_file = 'puppetserver.log'
   $server_reports = undef
   $server_version = 'latest'
+  $server_start_timeout = 120
   $firewall = false
   $jruby_instances = $::processors[count]-1
   $use_legacy_auth = false
